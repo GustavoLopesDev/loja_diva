@@ -1,0 +1,184 @@
+{
+  "produtos": [
+    {
+      "id": 1,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 2,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 1,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 2,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 1,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 2,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 1,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 2,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 1,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 2,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 3,
+      "nome": "Calça Jeans",
+      "descricao": "Calça jeans azul slim fit",
+      "preco": 109.9,
+      "imagem": "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 4,
+      "nome": "Saia Plissada",
+      "descricao": "Saia midi plissada bege",
+      "preco": 79.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 5,
+      "nome": "Blusa de Renda",
+      "descricao": "Blusa branca com detalhes em renda",
+      "preco": 69.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 6,
+      "nome": "Camisa Social",
+      "descricao": "Camisa social azul clara",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/6121448/pexels-photo-6121448.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 7,
+      "nome": "Short Jeans",
+      "descricao": "Short jeans feminino cintura alta",
+      "preco": 59.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 8,
+      "nome": "Jaqueta Jeans",
+      "descricao": "Jaqueta jeans oversized",
+      "preco": 129.9,
+      "imagem": "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "unissex"
+    },
+    {
+      "id": 9,
+      "nome": "Moletom Liso",
+      "descricao": "Moletom cinza sem estampa",
+      "preco": 99.9,
+      "imagem": "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "unissex"
+    },
+    {
+      "id": 10,
+      "nome": "Macacão Longo",
+      "descricao": "Macacão preto elegante",
+      "preco": 139.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 11,
+      "nome": "Regata Básica",
+      "descricao": "Regata de malha masculina",
+      "preco": 29.9,
+      "imagem": "https://images.pexels.com/photos/6626903/pexels-photo-6626903.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 12,
+      "nome": "Conjunto de Moletom",
+      "descricao": "Conjunto completo de moletom rosa",
+      "preco": 159.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 13,
+      "nome": "Blazer Casual",
+      "descricao": "Blazer masculino cinza escuro",
+      "preco": 189.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    }
+  ],
+  "banners": [
+    {
+      "id": 1,
+      "imagem": "https://images.pexels.com/photos/2246258/pexels-photo-2246258.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "alt": "Promoção de vestidos"
+    },
+    {
+      "id": 2,
+      "imagem": "https://images.pexels.com/photos/32001518/pexels-photo-32001518/free-photo-of-celebracao-de-formatura-do-ensino-medio-do-lado-de-fora-do-portao-da-escola.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "alt": "Coleção outono"
+    }
+  ]
+}
