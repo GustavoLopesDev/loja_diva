@@ -2,6 +2,7 @@
   box-sizing: border-box;
   padding: 0;
   border: 0;
+  text-decoration: none;
   margin: 0;
 }
 :root {
@@ -53,7 +54,6 @@
   gap: 5px;
 }
 .links_header {
-  text-decoration: none;
   color: #fff;
 }
 .icon_contato {
@@ -73,7 +73,6 @@
 }
 .links_home {
   color: #000;
-  text-decoration: none;
   font-size: 23px;
   margin-top: 25px;
   margin-bottom: 25px;
@@ -120,6 +119,9 @@
   text-align: center;
   margin-bottom: 30px;
 }
+.text_card_product {
+  color: #000;
+}
 
 .img_card_product {
   height: 150px;
@@ -135,4 +137,105 @@
   padding: 10px;
   font-weight: bold;
   font-size: 30px;
+}
+
+/* Pagina de Compra*/
+.shopping_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 90%;
+  height: 600px;
+  max-width: 1400px;
+  margin: 0 auto;
+  gap: 2rem;
+  padding: 2rem 0;
+  margin-bottom: 40px;
+}
+.shopping_container-1 {
+  width: 100%;
+  height: 100%;
+  background-color: #e6e5e5;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.shopping_container-2 {
+  width: 100%;
+  height: 100%;
+}
+.img_shopping {
+  width: 50%;
+  height: 80%;
+  max-height: 650px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+.text_shopping {
+  font-size: 40px;
+}
+.valor_product {
+  font-size: 25px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+.icon_image_shopping {
+  height: 50px;
+  border-radius: 100%;
+  margin-top: 10px;
+}
+
+.div_compras_shopping {
+  display: flex;
+  gap: 1rem;
+  margin-top: 10px;
+  align-items: center;
+}
+
+.link_comprar_shopping {
+  font-size: 25px;
+  padding: 5px 15px;
+  background-color: var(--color6);
+  color: #fff;
+}
+
+.links_car_shopping {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  background-color: var(--color6);
+  padding: 5px 15px;
+  color: #ffffff;
+  font-size: 25px;
+}
+
+.quant_product_container {
+  display: flex;
+  width: 300px;
+  padding: 10px;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+.quant_product {
+  display: flex;
+  align-items: center;
+}
+
+.div_click_buttom,
+.text_div_click_buttom {
+  border: solid 1px var(--color4);
+  color: var(--color4);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  justify-content: center;
+}
+.text_div_click_buttom {
+  color: var(--color1);
+  width: 60px;
 }

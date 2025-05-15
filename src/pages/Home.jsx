@@ -24,6 +24,7 @@ const Home = () => {
       <div className="container_produtos">
         <h2>AS MARCAS QUERIDINHAS COM CONDIÇÕES QUE SÓ A GENTE TEM</h2>
         <Produtos />
+        <Produtos />
       </div>
     </div>
   );
