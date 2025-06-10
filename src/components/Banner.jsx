@@ -19,8 +19,8 @@ const Banner = () => {
         modules={[Autoplay]}
         autoplay={{
           delay: 5000,
-          disableOnInteraction: false, //continua apó interação
-          pauseOnMouseEnter: true, //pausa ao passar o mouse
+          disableOnInteraction: false,
+          pauseOnMouseEnter: true,
         }}
         loop={true}
         slidesPerView={1}

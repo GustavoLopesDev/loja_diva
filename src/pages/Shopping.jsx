@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { BsHandbag } from "react-icons/bs";
 import axios from "axios";
 import Produtos from "../components/Produtos";
 
 const Shopping = () => {
+  const navigate = useNavigate();
+
   const { id } = useParams();
   const [produto, setProduto] = useState(null);
   const [quantidade, setquantidade] = useState(1);
@@ -15,6 +17,33 @@ const Shopping = () => {
     if (quantidade > 1) {
       setquantidade((prev) => prev - 1);
     }
+  };
+  const addToCart = (produto) => {
+    const carrinhoAtual = JSON.parse(localStorage.getItem("carrinho")) || [];
+
+    const produtoExistente = carrinhoAtual.find(
+      (item) => item.id === produto.id
+    );
+
+    let novoCarrinho;
+
+    if (produtoExistente) {
+      // Produto já está no carrinho → aumenta a quantidade
+      novoCarrinho = carrinhoAtual.map((item) =>
+        item.id === produto.id
+          ? { ...item, quantidade: item.quantidade + 1 }
+          : item
+      );
+    } else {
+      // Produto novo → adiciona com quantidade 1
+      novoCarrinho = [...carrinhoAtual, { ...produto, quantidade: 1 }];
+    }
+
+    localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
+    alert("Produto adicionado ao carrinho!");
+  };
+  const irParaCompras = () => {
+    navigate(`/comprar/${produto.id}`);
   };
 
   useEffect(() => {
@@ -55,13 +84,28 @@ const Shopping = () => {
           </div>
 
           <div className="div_compras_shopping">
-            <Link to="/" className="link_comprar_shopping">
-              <p>Comprar</p>
-            </Link>
-            <Link to="/" className="links_car_shopping">
-              <p> Adicionar ao Carrinho</p>
+            <div className="links_shopping">
+              <button
+                onClick={() => {
+                  irParaCompras();
+                }}
+                style={{ all: "unset", cursor: "pointer" }}
+              >
+                Comprar
+              </button>
+            </div>
+            <div className="links_shopping">
+              <button
+                onClick={() => addToCart({ ...produto, quantidade })}
+                style={{
+                  all: "unset",
+                  cursor: "pointer",
+                }}
+              >
+                Adicionar ao carrinho
+              </button>
               <BsHandbag className="bag_car_shopping" />
-            </Link>
+            </div>
           </div>
         </div>
       </div>

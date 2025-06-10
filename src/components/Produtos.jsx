@@ -19,7 +19,9 @@ const Produtos = () => {
   useEffect(() => {
     axios
       .get("http://localhost:3001/produtos")
-      .then((res) => setProductos(res.data))
+      .then((res) => {
+        setProductos(res.data); // <- aqui está o ajuste!
+      })
       .catch((err) => console.log(err));
   }, []);
 

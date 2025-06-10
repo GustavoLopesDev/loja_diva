@@ -4,6 +4,7 @@ import { IoMdContact } from "react-icons/io";
 import { BsHandbag } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import logo from "../assets/logo_diva.png";
+import Car from "./Car";
 
 const Header = () => {
   return (
@@ -34,7 +35,7 @@ const Header = () => {
           <IoMdContact className="icon_contato" />
         </Link>
       </div>
-      <Link to="/" className="links_header">
+      <Link to="/carrinho" className="links_header">
         <BsHandbag className="bag_car" />
       </Link>
     </div>

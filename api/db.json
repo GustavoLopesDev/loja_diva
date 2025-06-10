@@ -17,71 +17,71 @@
       "categoria": "feminina"
     },
     {
-      "id": 1,
-      "nome": "Camiseta Preta",
-      "descricao": "Camiseta básica de algodão",
-      "preco": 49.9,
-      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "masculina"
-    },
-    {
-      "id": 2,
-      "nome": "Vestido Floral",
-      "descricao": "Vestido leve com estampa floral",
-      "preco": 89.9,
-      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "feminina"
-    },
-    {
-      "id": 1,
-      "nome": "Camiseta Preta",
-      "descricao": "Camiseta básica de algodão",
-      "preco": 49.9,
-      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "masculina"
-    },
-    {
-      "id": 2,
-      "nome": "Vestido Floral",
-      "descricao": "Vestido leve com estampa floral",
-      "preco": 89.9,
-      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "feminina"
-    },
-    {
-      "id": 1,
-      "nome": "Camiseta Preta",
-      "descricao": "Camiseta básica de algodão",
-      "preco": 49.9,
-      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "masculina"
-    },
-    {
-      "id": 2,
-      "nome": "Vestido Floral",
-      "descricao": "Vestido leve com estampa floral",
-      "preco": 89.9,
-      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "feminina"
-    },
-    {
-      "id": 1,
-      "nome": "Camiseta Preta",
-      "descricao": "Camiseta básica de algodão",
-      "preco": 49.9,
-      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "masculina"
-    },
-    {
-      "id": 2,
-      "nome": "Vestido Floral",
-      "descricao": "Vestido leve com estampa floral",
-      "preco": 89.9,
-      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-      "categoria": "feminina"
-    },
-    {
       "id": 3,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 4,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 5,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 6,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 7,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 8,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 9,
+      "nome": "Camiseta Preta",
+      "descricao": "Camiseta básica de algodão",
+      "preco": 49.9,
+      "imagem": "https://images.pexels.com/photos/3053824/pexels-photo-3053824.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "masculina"
+    },
+    {
+      "id": 10,
+      "nome": "Vestido Floral",
+      "descricao": "Vestido leve com estampa floral",
+      "preco": 89.9,
+      "imagem": "https://images.pexels.com/photos/7562078/pexels-photo-7562078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      "categoria": "feminina"
+    },
+    {
+      "id": 11,
       "nome": "Calça Jeans",
       "descricao": "Calça jeans azul slim fit",
       "preco": 109.9,
@@ -89,7 +89,7 @@
       "categoria": "masculina"
     },
     {
-      "id": 4,
+      "id": 12,
       "nome": "Saia Plissada",
       "descricao": "Saia midi plissada bege",
       "preco": 79.9,
@@ -97,7 +97,7 @@
       "categoria": "feminina"
     },
     {
-      "id": 5,
+      "id": 13,
       "nome": "Blusa de Renda",
       "descricao": "Blusa branca com detalhes em renda",
       "preco": 69.9,
@@ -105,7 +105,7 @@
       "categoria": "feminina"
     },
     {
-      "id": 6,
+      "id": 14,
       "nome": "Camisa Social",
       "descricao": "Camisa social azul clara",
       "preco": 89.9,
@@ -113,7 +113,7 @@
       "categoria": "masculina"
     },
     {
-      "id": 7,
+      "id": 15,
       "nome": "Short Jeans",
       "descricao": "Short jeans feminino cintura alta",
       "preco": 59.9,
@@ -121,7 +121,7 @@
       "categoria": "feminina"
     },
     {
-      "id": 8,
+      "id": 16,
       "nome": "Jaqueta Jeans",
       "descricao": "Jaqueta jeans oversized",
       "preco": 129.9,
@@ -129,7 +129,7 @@
       "categoria": "unissex"
     },
     {
-      "id": 9,
+      "id": 17,
       "nome": "Moletom Liso",
       "descricao": "Moletom cinza sem estampa",
       "preco": 99.9,
@@ -137,7 +137,7 @@
       "categoria": "unissex"
     },
     {
-      "id": 10,
+      "id": 18,
       "nome": "Macacão Longo",
       "descricao": "Macacão preto elegante",
       "preco": 139.9,
@@ -145,7 +145,7 @@
       "categoria": "feminina"
     },
     {
-      "id": 11,
+      "id": 19,
       "nome": "Regata Básica",
       "descricao": "Regata de malha masculina",
       "preco": 29.9,
@@ -153,7 +153,7 @@
       "categoria": "masculina"
     },
     {
-      "id": 12,
+      "id": 20,
       "nome": "Conjunto de Moletom",
       "descricao": "Conjunto completo de moletom rosa",
       "preco": 159.9,
@@ -161,7 +161,7 @@
       "categoria": "feminina"
     },
     {
-      "id": 13,
+      "id": 21,
       "nome": "Blazer Casual",
       "descricao": "Blazer masculino cinza escuro",
       "preco": 189.9,
