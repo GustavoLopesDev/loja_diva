@@ -9,7 +9,7 @@ const Compras = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/produtos/${id}`)
+      .get(`https://fakestoreapi.com/products/${id}`)
       .then((res) => {
         setProduto(res.data);
       })
@@ -93,9 +93,9 @@ const Compras = () => {
 
   return (
     <div style={styles.container}>
-      <img src={produto.imagem} alt={produto.nome} style={styles.imagem} />
-      <h2 style={styles.titulo}>{produto.nome}</h2>
-      <p style={styles.descricao}>{produto.descricao}</p>
+      <img src={produto.image} alt={produto.title} style={styles.imagem} />
+      <h2 style={styles.titulo}>{produto.title}</h2>
+      <p style={styles.descricao}>{produto.description}</p>
 
       <div style={styles.quantidadeContainer}>
         <button style={styles.botaoQuant} onClick={diminuirQuant}>
@@ -108,7 +108,7 @@ const Compras = () => {
       </div>
 
       <h3 style={styles.preco}>
-        Preço total: R$ {(produto.preco * quantidade).toFixed(2)}
+        Preço total: R$ {(produto.price * quantidade).toFixed(2)}
       </h3>
 
       <button
@@ -116,9 +116,9 @@ const Compras = () => {
         onClick={() =>
           alert(
             `Compra de ${quantidade}x ${
-              produto.nome
+              produto.title
             } realizada com sucesso! Total: R$ ${(
-              produto.preco * quantidade
+              produto.price * quantidade
             ).toFixed(2)}`
           )
         }

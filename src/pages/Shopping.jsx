@@ -2,54 +2,50 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { GrAdd, GrFormSubtract } from "react-icons/gr";
 import { BsHandbag } from "react-icons/bs";
-import axios from "axios";
+import api from "../../api/api"; // ajuste o caminho conforme seu projeto
 import Produtos from "../components/Produtos";
 
 const Shopping = () => {
   const navigate = useNavigate();
-
   const { id } = useParams();
   const [produto, setProduto] = useState(null);
   const [quantidade, setquantidade] = useState(1);
 
   const adicionarQuant = () => setquantidade((prev) => prev + 1);
   const diminuirQuant = () => {
-    if (quantidade > 1) {
-      setquantidade((prev) => prev - 1);
-    }
+    if (quantidade > 1) setquantidade((prev) => prev - 1);
   };
+
   const addToCart = (produto) => {
     const carrinhoAtual = JSON.parse(localStorage.getItem("carrinho")) || [];
-
     const produtoExistente = carrinhoAtual.find(
       (item) => item.id === produto.id
     );
 
     let novoCarrinho;
-
     if (produtoExistente) {
-      // Produto já está no carrinho → aumenta a quantidade
       novoCarrinho = carrinhoAtual.map((item) =>
         item.id === produto.id
-          ? { ...item, quantidade: item.quantidade + 1 }
+          ? { ...item, quantidade: item.quantidade + quantidade }
           : item
       );
     } else {
-      // Produto novo → adiciona com quantidade 1
-      novoCarrinho = [...carrinhoAtual, { ...produto, quantidade: 1 }];
+      novoCarrinho = [...carrinhoAtual, { ...produto, quantidade }];
     }
-
     localStorage.setItem("carrinho", JSON.stringify(novoCarrinho));
     alert("Produto adicionado ao carrinho!");
   };
+
   const irParaCompras = () => {
     navigate(`/comprar/${produto.id}`);
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:3001/produtos/${id}`)
-      .then((res) => setProduto(res.data))
+    api
+      .get(`/products/${id}`)
+      .then((res) => {
+        setProduto(res.data);
+      })
       .catch((err) => console.error("Erro ao carregar produto:", err));
   }, [id]);
 
@@ -61,13 +57,15 @@ const Shopping = () => {
         <div className="shopping_container-1">
           <img
             className="img_shopping"
-            src={produto.imagem}
-            alt={produto.nome}
+            src={produto.image}
+            alt={produto.title}
           />
         </div>
         <div className="shopping_container-2">
-          <p className="text_shopping">{produto.descricao}</p>
-          <p className="valor_product">R$ {produto.preco}</p>
+          <p className="title_shopping">{produto.title}</p>
+          <p className="text_shopping">{produto.description}</p>
+          <p className="valor_product">R$ {produto.price}</p>
+
           <div className="quant_product_container">
             <p>Quantidade :</p>
             <div className="quant_product">
@@ -86,9 +84,7 @@ const Shopping = () => {
           <div className="div_compras_shopping">
             <div className="links_shopping">
               <button
-                onClick={() => {
-                  irParaCompras();
-                }}
+                onClick={irParaCompras}
                 style={{ all: "unset", cursor: "pointer" }}
               >
                 Comprar
@@ -97,10 +93,7 @@ const Shopping = () => {
             <div className="links_shopping">
               <button
                 onClick={() => addToCart({ ...produto, quantidade })}
-                style={{
-                  all: "unset",
-                  cursor: "pointer",
-                }}
+                style={{ all: "unset", cursor: "pointer" }}
               >
                 Adicionar ao carrinho
               </button>

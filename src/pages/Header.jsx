@@ -24,13 +24,13 @@ const Header = () => {
         </Link>
       </div>
       <div>
-        <Link to="/" className="links_header">
+        <Link to="/addProduct" className="links_header">
           <p>Compre pelo Whastsaap</p>
           <FaWhatsapp className="icon_whats" />
         </Link>
       </div>
       <div>
-        <Link to="/" className="links_header">
+        <Link to="/login" className="links_header">
           <p>Bem vindo Divas</p>
           <IoMdContact className="icon_contato" />
         </Link>

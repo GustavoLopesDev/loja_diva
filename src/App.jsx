@@ -1,24 +1,81 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Header from "./pages/Header";
 import Home from "./pages/Home";
 import Shopping from "./pages/Shopping";
 import Car from "./pages/Car";
 import Compras from "./pages/Compras";
 import FinalizarCompra from "./pages/FinalizarCompra";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
 
-const App = () => {
+import { AuthProvider } from "./components/AuthContext";
+import PrivateRoute from "./components/PrivateRoute";
+
+// Componente para usar o hook fora do <BrowserRouter>
+const AppWrapper = () => {
+  const location = useLocation();
+  const hideHeaderRoutes = ["/login", "/register"];
+  const shouldHideHeader = hideHeaderRoutes.includes(location.pathname);
+
   return (
-    <BrowserRouter>
-      <Header />
+    <>
+      {!shouldHideHeader && <Header />}
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/shopping/:id" element={<Shopping />} />
-        <Route path="/carrinho" element={<Car />} />
-        <Route path="/comprar/:id" element={<Compras />} />
-        <Route path="/finalizar" element={<FinalizarCompra />} />
+        {/* ROTAS PROTEGIDAS */}
+        <Route
+          path="/"
+          element={
+            <PrivateRoute>
+              <Home />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/shopping/:id"
+          element={
+            <PrivateRoute>
+              <Shopping />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/carrinho"
+          element={
+            <PrivateRoute>
+              <Car />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/comprar/:id"
+          element={
+            <PrivateRoute>
+              <Compras />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/finalizar"
+          element={
+            <PrivateRoute>
+              <FinalizarCompra />
+            </PrivateRoute>
+          }
+        />
+        {/* ROTAS LIVRES */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
-    </BrowserRouter>
+    </>
   );
 };
+
+const App = () => (
+  <BrowserRouter>
+    <AuthProvider>
+      <AppWrapper />
+    </AuthProvider>
+  </BrowserRouter>
+);
 
 export default App;

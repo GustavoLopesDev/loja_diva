@@ -2,25 +2,29 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Link } from "react-router-dom";
+import { Navigation } from "swiper/modules";
+
+import "swiper/css";
+import "swiper/css/navigation";
 
 const Produtos = () => {
-  const [products, setProductos] = useState([]);
+  const [products, setProducts] = useState([]);
 
   const listProducts = products.map((item, index) => (
     <SwiperSlide key={`${item.id}-${index}`} className="card_produto">
       <Link to={`/shopping/${item.id}`} className="link_produto">
-        <img src={item.imagem} alt="roupas" className="img_card_product" />
-        <p className="text_card_product">{item.descricao}</p>
-        <p className="text_card_product">R$ {item.preco}</p>
+        <img src={item.image} alt={item.title} className="img_card_product" />
+        <p className="text_card_product">{item.title}</p>
+        <p className="text_card_product">R$ {item.price.toFixed(2)}</p>
       </Link>
     </SwiperSlide>
   ));
 
   useEffect(() => {
     axios
-      .get("http://localhost:3001/produtos")
+      .get("https://fakestoreapi.com/products")
       .then((res) => {
-        setProductos(res.data); // <- aqui está o ajuste!
+        setProducts(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -28,15 +32,17 @@ const Produtos = () => {
   return (
     <>
       <div className="slide_produtos">
-        <Swiper
-          slidesPerView={6}
-          slidesPerGroup={3}
-          pagination={false}
-          loop={true}
-          navigation
-        >
-          {listProducts}
-        </Swiper>
+        {products.length > 0 && (
+          <Swiper
+            modules={[Navigation]}
+            slidesPerView={6}
+            slidesPerGroup={4}
+            loop={true}
+            navigation
+          >
+            {listProducts}
+          </Swiper>
+        )}
       </div>
     </>
   );

@@ -49,12 +49,16 @@ const CardsCar = () => {
   };
 
   const total = cartItems
-    .reduce((acc, item) => acc + item.preco * item.quantidade, 0)
+    .reduce((acc, item) => acc + item.price * item.quantidade, 0)
     .toFixed(2);
 
   // Função para ir para página de finalizar compra
   const irParaFinalizarCompra = () => {
-    navigate("/finalizar"); // Ajuste o caminho conforme sua rota
+    navigate("/");
+    localStorage.removeItem("carrinho");
+
+    setCartItems([]);
+    alert("Obrigado por sua compra Diva!!");
   };
 
   const styles = {
@@ -164,37 +168,35 @@ const CardsCar = () => {
           <ul style={styles.list}>
             {cartItems.map((item, index) => (
               <li key={index} style={styles.item}>
-                <img src={item.imagem} alt={item.nome} style={styles.image} />
-                <div style={styles.itemText}>
-                  <p style={styles.p}>{item.nome}</p>
-                  <p style={styles.p}>
-                    R$ {item.preco.toFixed(2)} × {item.quantidade} ={" "}
-                    <strong>
-                      R$ {(item.preco * item.quantidade).toFixed(2)}
-                    </strong>
-                  </p>
-                  <div style={styles.quantControls}>
-                    <button
-                      style={styles.quantButton}
-                      onClick={() => diminuirQuant(item.id)}
-                    >
-                      −
-                    </button>
-                    <span>{item.quantidade}</span>
-                    <button
-                      style={styles.quantButton}
-                      onClick={() => aumentarQuant(item.id)}
-                    >
-                      +
-                    </button>
-                  </div>
+                <img src={item.image} alt={item.title} style={styles.image} />
+                <p style={styles.p}>{item.title}</p>
+                <p style={styles.p}>
+                  R$ {item.price.toFixed(2)} × {item.quantidade} ={" "}
+                  <strong>
+                    R$ {(item.price * item.quantidade).toFixed(2)}
+                  </strong>
+                </p>
+                <div style={styles.quantControls}>
                   <button
-                    style={styles.button}
-                    onClick={() => removeItem(item.id)}
+                    style={styles.quantButton}
+                    onClick={() => diminuirQuant(item.id)}
                   >
-                    Remover
+                    −
+                  </button>
+                  <span>{item.quantidade}</span>
+                  <button
+                    style={styles.quantButton}
+                    onClick={() => aumentarQuant(item.id)}
+                  >
+                    +
                   </button>
                 </div>
+                <button
+                  style={styles.button}
+                  onClick={() => removeItem(item.id)}
+                >
+                  Remover
+                </button>
               </li>
             ))}
           </ul>

@@ -172,9 +172,19 @@
   object-position: center;
   display: block;
 }
-.text_shopping {
-  font-size: 40px;
+.title_shopping {
+  font-size: 30px;
+  font-weight: bold;
 }
+.text_shopping {
+  font-size: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 .valor_product {
   font-size: 25px;
   font-weight: bold;
