@@ -1,10 +1,12 @@
-import { Navigate } from "react-router-dom";
 import { useAuth } from "./AuthContext";
+import { Navigate } from "react-router-dom";
 
-export default function PrivateRoute({ children }) {
+const PrivateRoute = ({ children }) => {
   const { usuario, loading } = useAuth();
 
-  if (loading) return <p>Carregando...</p>;
+  if (loading) return <p>Carregando autenticação...</p>;
 
   return usuario ? children : <Navigate to="/login" />;
-}
+};
+
+export default PrivateRoute;

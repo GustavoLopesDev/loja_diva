@@ -1,23 +1,27 @@
+// firebaseConfig.js
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
+import { getFirestore } from "firebase/firestore"; // IMPORTAR Firestore
 
 const firebaseConfig = {
   apiKey: "AIzaSyCJFTyN-jXnKMOyl6bAgAImMYFXh6ewdyA",
   authDomain: "divafashion-630b5.firebaseapp.com",
   projectId: "divafashion-630b5",
-  storageBucket: "divafashion-630b5.appspot.com", // Atenção nesse campo: storageBucket tem que ser ".appspot.com" e não ".firebasestorage.app"
+  storageBucket: "divafashion-630b5.appspot.com",
+
   messagingSenderId: "1050199144616",
   appId: "1:1050199144616:web:f0b211a572bf233ba3ea9d",
   measurementId: "G-3MHQJ41KZ9",
 };
 
+// Inicializa o app Firebase
 const app = initializeApp(firebaseConfig);
 
-export const storage = getStorage(app); // Agora app está declarado
-
+// Inicializa os serviços que precisa
 const auth = getAuth(app);
-const db = getFirestore(app);
+const storage = getStorage(app);
+const db = getFirestore(app); // CRIA a instância do Firestore
 
-export { auth, db };
+// Exporta para usar em outros arquivos
+export { app, auth, storage, db };

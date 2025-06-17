@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState, useContext } from "react";
-import { onAuthStateChanged } from "firebase/auth";
-import { auth } from "../firebase";
+import { onAuthStateChanged, signOut } from "firebase/auth";
+import { auth } from "../firebaseConfig";
 
 const AuthContext = createContext();
 
@@ -14,11 +14,20 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
     });
 
-    return () => unsubscribe(); // limpa o listener
+    return () => unsubscribe();
   }, []);
 
+  const logout = async () => {
+    try {
+      await signOut(auth);
+      setUsuario(null);
+    } catch (error) {
+      console.error("Erro ao fazer logout:", error);
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ usuario, loading }}>
+    <AuthContext.Provider value={{ usuario, loading, logout }}>
       {children}
     </AuthContext.Provider>
   );

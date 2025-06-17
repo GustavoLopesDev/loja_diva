@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { auth } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "../firebaseConfig";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { db } from "../firebase";
+import { db } from "../firebaseConfig";
 import { doc, setDoc } from "firebase/firestore";
 
 const sharedStyles = {
@@ -30,6 +30,12 @@ const sharedStyles = {
   error: {
     color: "#dc2626",
     fontSize: "0.875rem",
+    textAlign: "center",
+    marginBottom: "1rem",
+  },
+  success: {
+    color: "green",
+    fontSize: "1rem",
     textAlign: "center",
     marginBottom: "1rem",
   },
@@ -74,24 +80,33 @@ const registerStyles = {
     color: "#4b5563", // cinza
   },
 };
-
 export default function Register() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
   const navigate = useNavigate();
+
+  console.log("Estado success:", success);
 
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    if (!email || !password || !confirmPassword) {
+    setError("");
+    setSuccess("");
+    console.log("handleRegister iniciado");
+
+    if (!email || !password || !confirmPassword || !name) {
       setError("Preencha todos os campos.");
+      console.log("Erro: Preencha todos os campos.");
       return;
     }
 
     if (password !== confirmPassword) {
       setError("As senhas não coincidem.");
+      console.log("Erro: Senhas não coincidem.");
       return;
     }
 
@@ -102,17 +117,26 @@ export default function Register() {
         password
       );
       const user = userCredential.user;
+      setSuccess("Usuário cadastrado com sucesso!");
+      alert("Usuário cadastrado com sucesso!");
+      navigate("/login");
+
+      await updateProfile(user, {
+        displayName: name,
+      });
+      console.log("Profile atualizado");
 
       await setDoc(doc(db, "usuarios", user.uid), {
+        nome: name,
         email: user.email,
         criadoEm: new Date(),
       });
+      console.log("Documento Firestore criado");
 
-      alert("Usuário cadastrado com sucesso!");
-      setTimeout(() => {
-        navigate("/login");
-      }, 100);
+      setSuccess("Usuário cadastrado com sucesso!");
+      console.log("Success setado");
     } catch (err) {
+      console.error("Erro ao cadastrar:", err);
       if (err.code === "auth/email-already-in-use") {
         setError("Este e-mail já está em uso.");
       } else if (err.code === "auth/weak-password") {
@@ -128,7 +152,16 @@ export default function Register() {
       <div style={registerStyles.card}>
         <h2 style={registerStyles.heading}>Cadastro</h2>
         {error && <div style={registerStyles.error}>{error}</div>}
+
         <form onSubmit={handleRegister}>
+          <label style={registerStyles.label}>Nome</label>
+          <input
+            type="text"
+            style={registerStyles.input}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            placeholder="seu nome"
+          />
           <label style={registerStyles.label}>E-mail</label>
           <input
             type="email"
@@ -153,7 +186,11 @@ export default function Register() {
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="********"
           />
-          <button type="submit" style={registerStyles.button}>
+          <button
+            type="submit"
+            style={registerStyles.button}
+            disabled={!!success} // desativa botão após sucesso
+          >
             Cadastrar
           </button>
         </form>

@@ -7,11 +7,11 @@ import Compras from "./pages/Compras";
 import FinalizarCompra from "./pages/FinalizarCompra";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import Usuario from "./pages/Usuario";
 
 import { AuthProvider } from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
 
-// Componente para usar o hook fora do <BrowserRouter>
 const AppWrapper = () => {
   const location = useLocation();
   const hideHeaderRoutes = ["/login", "/register"];
@@ -21,23 +21,8 @@ const AppWrapper = () => {
     <>
       {!shouldHideHeader && <Header />}
       <Routes>
-        {/* ROTAS PROTEGIDAS */}
-        <Route
-          path="/"
-          element={
-            <PrivateRoute>
-              <Home />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/shopping/:id"
-          element={
-            <PrivateRoute>
-              <Shopping />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/" element={<Home />} />
+        <Route path="/shopping/:id" element={<Shopping />} />
         <Route
           path="/carrinho"
           element={
@@ -62,7 +47,15 @@ const AppWrapper = () => {
             </PrivateRoute>
           }
         />
-        {/* ROTAS LIVRES */}
+        <Route
+          path="/perfil"
+          element={
+            <PrivateRoute>
+              <Usuario />
+            </PrivateRoute>
+          }
+        />
+
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
       </Routes>

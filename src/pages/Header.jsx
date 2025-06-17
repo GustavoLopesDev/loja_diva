@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaSearch, FaWhatsapp } from "react-icons/fa";
 import { IoMdContact } from "react-icons/io";
 import { BsHandbag } from "react-icons/bs";
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import logo from "../assets/logo_diva.png";
-import Car from "./Car";
+import { useAuth } from "../components/AuthContext";
 
 const Header = () => {
+  const { usuario } = useAuth();
+
   return (
-    <div className="header">
+    <header className="header">
       <Link to="/">
         <img className="logo_header" src={logo} alt="Logo da loja" />
       </Link>
@@ -16,29 +18,32 @@ const Header = () => {
       <div className="div_input_header">
         <input
           className="input_header"
-          placeholder="O que você está procurando ?"
+          placeholder="O que você está procurando?"
           type="text"
         />
         <Link>
-          <FaSearch className="icon_lupa" />
+          <FaSearch className="icon_lupa" title="Buscar" />
         </Link>
       </div>
-      <div>
-        <Link to="/addProduct" className="links_header">
-          <p>Compre pelo Whastsaap</p>
-          <FaWhatsapp className="icon_whats" />
-        </Link>
-      </div>
-      <div>
-        <Link to="/login" className="links_header">
-          <p>Bem vindo Divas</p>
-          <IoMdContact className="icon_contato" />
-        </Link>
-      </div>
-      <Link to="/carrinho" className="links_header">
-        <BsHandbag className="bag_car" />
+
+      <Link to="/addProduct" className="links_header">
+        <p>Compre pelo WhatsApp</p>
+        <FaWhatsapp className="icon_whats" title="WhatsApp" />
       </Link>
-    </div>
+
+      <Link to={usuario ? "/perfil" : "/login"} className="links_header">
+        <p>{usuario ? "Olá, " + usuario.displayName + "!" : "Entrar"}</p>
+        <IoMdContact className="icon_contato" title="Perfil/Login" />
+        <img
+          src={usuario?.fotoURL || "url-default-ou-placeholder"}
+          alt="perfil"
+        />
+      </Link>
+
+      <Link to="/carrinho" className="links_header">
+        <BsHandbag className="bag_car" title="Carrinho" />
+      </Link>
+    </header>
   );
 };
 
