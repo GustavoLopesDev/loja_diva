@@ -217,7 +217,7 @@
   height: 40px;
   border-radius: 50%;
   color: #ff8cba !important;
-  /display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
