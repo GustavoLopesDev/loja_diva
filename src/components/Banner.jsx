@@ -8,12 +8,12 @@ const Banner = () => {
     {
       id: 1,
       imagem:
-        "https://firebasestorage.googleapis.com/v0/b/divafashion-630b5.firebasestorage.app/o/Banners%2FBanner%20festival%20de%20ofertas%20colorido%20moderno%20em%20pink%20e%20azul.png?alt=media&token=e3c3b396-990f-4dec-8b25-7b56aec4831d",
+        "https://firebasestorage.googleapis.com/v0/b/divafashion-630b5/o/Banner%2FBanner%20para%20loja%20online%20frete%20grátis%20mercado%20shops%20médio.png?alt=media&token=4236df1b-1508-4ac0-9f88-4f6a68ceb8c5",
     },
     {
       id: 2,
       imagem:
-        "https://firebasestorage.googleapis.com/v0/b/divafashion-630b5.firebasestorage.app/o/Banners%2FBanner%20para%20loja%20online%20frete%20gr%C3%A1tis%20mercado%20shops%20m%C3%A9dio.png?alt=media&token=e9716b8a-6152-4b52-ad51-58b571a2f272",
+        "https://firebasestorage.googleapis.com/v0/b/divafashion-630b5/o/Banner%2FBanner%20festival%20de%20ofertas%20colorido%20moderno%20em%20pink%20e%20azul.png?alt=media&token=1bc9864e-111a-4b59-85a6-a38d04b4efdd",
     },
   ];
 

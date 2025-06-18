@@ -10,6 +10,7 @@ const Shopping = () => {
   const { id } = useParams();
   const [produto, setProduto] = useState(null);
   const [quantidade, setquantidade] = useState(1);
+  const [relacionados, setRelacionados] = useState([]);
 
   const adicionarQuant = () => setquantidade((prev) => prev + 1);
   const diminuirQuant = () => {
@@ -45,8 +46,18 @@ const Shopping = () => {
       .get(`/products/${id}`)
       .then((res) => {
         setProduto(res.data);
+
+        return api.get(`/products/category/${res.data.category}`);
       })
-      .catch((err) => console.error("Erro ao carregar produto:", err));
+      .then((res) => {
+        const relacionadosFiltrados = res.data.filter(
+          (p) => p.id !== Number(id)
+        );
+        setRelacionados(relacionadosFiltrados);
+      })
+      .catch((err) =>
+        console.error("Erro ao carregar produto ou relacionados:", err)
+      );
   }, [id]);
 
   if (!produto) return <p>Carregando...</p>;
@@ -102,9 +113,15 @@ const Shopping = () => {
           </div>
         </div>
       </div>
-      <div>
-        <Produtos />
-      </div>
+
+      {relacionados.length > 0 && (
+        <div>
+          <h2 style={{ marginLeft: "1rem", marginTop: "2rem" }}>
+            Produtos relacionados
+          </h2>
+          <Produtos produtos={relacionados} />
+        </div>
+      )}
     </>
   );
 };

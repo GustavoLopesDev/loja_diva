@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "loja-diva-api"
-  }
+  },
+  "targets": {
+    "divafashion-630b5": {
+      "storage": {
+        "divafashion-630b5-qwtku": [
+          "divafashion-630b5-qwtku"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

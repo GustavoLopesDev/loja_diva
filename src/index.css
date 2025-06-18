@@ -18,17 +18,17 @@
   background-color: var(--color4);
   display: flex;
   align-items: center;
-  justify-content: space-between; /* melhor espaçamento entre os itens */
-  padding: 0 2rem;
-  height: 70px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  justify-content: space-between;
+  padding: 0 3rem;
+  height: 80px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 100;
 }
 
 .logo_header {
-  width: 160px;
+  width: 180px;
   height: auto;
   cursor: pointer;
   user-select: none;
@@ -36,83 +36,74 @@
 }
 
 .logo_header:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .div_input_header {
   display: flex;
   align-items: center;
-  width: 280px;
+  width: 360px;
   max-width: 100%;
-  height: 36px;
-  padding: 0 12px;
-  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  gap: 10px;
   background-color: #fff;
-  border-radius: 18px;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 24px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.3s ease;
 }
 
 .div_input_header:focus-within {
-  box-shadow: 0 0 8px var(--color6);
+  box-shadow: 0 0 10px var(--color6);
 }
 
 .input_header {
   border: none;
   outline: none;
-  font-size: 15px;
+  font-size: 16px;
   width: 100%;
   font-weight: 500;
   color: #333;
 }
 
 .icon_lupa {
-  font-size: 18px;
+  font-size: 20px;
   color: var(--color6);
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
 .icon_lupa:hover {
-  color: #a3154a; /* rosa mais escuro no hover */
+  color: #a3154a;
 }
 
 .links_header {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 28px;
   color: #fff;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
   user-select: none;
 }
 
 .links_header a {
   color: #fff;
   text-decoration: none;
-  padding: 6px 12px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.links_header a:hover {
-  background-color: rgba(255, 64, 129, 0.15); /* efeito rosa suave */
-  color: var(--color6);
+  padding: 8px 16px;
+  border-radius: 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .icon_contato {
-  font-size: 20px;
+  font-size: 22px;
   cursor: pointer;
   transition: color 0.3s ease;
 }
 
-.icon_contato:hover {
-  color: var(--color6);
-}
-
 .bag_car {
-  font-size: 24px;
-  margin-left: 15px;
+  font-size: 26px;
+  margin-left: 20px;
   cursor: pointer;
   transition: color 0.3s ease;
 }
@@ -121,15 +112,61 @@
   color: var(--color6);
 }
 
-/* Responsividade simples */
-@media (max-width: 768px) {
-  .header {
-    justify-content: space-between;
-    padding: 0 1rem;
+.menu_hamburguer {
+  display: none;
+  color: white;
+  cursor: pointer;
+  z-index: 200;
+}
+
+/* Menu que abre no mobile */
+.menu_mobile {
+  position: absolute;
+  top: 70px;
+  right: 0;
+  background-color: var(--color4);
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 150;
+}
+
+.menu_mobile a {
+  color: #fff;
+  font-size: 18px;
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 5px;
+}
+
+@media (max-width: 714px) {
+  .links_header {
+    display: none;
+  }
+
+  .menu_hamburguer {
+    display: block;
   }
   .div_input_header {
-    width: 180px;
-    height: 32px;
+    display: none;
+  }
+
+  .menu_mobile .div_input_header {
+    display: flex;
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 864px) {
+  .header {
+    padding: 0 1rem;
+    height: 70px;
+  }
+  .logo_header {
+    width: 140px;
   }
   .input_header {
     font-size: 14px;
@@ -138,11 +175,9 @@
     gap: 10px;
     font-size: 14px;
   }
-  .logo_header {
-    width: 140px;
-  }
   .bag_car {
     font-size: 20px;
+    margin-left: 10px;
   }
 }
 
@@ -155,8 +190,8 @@
   margin: 20px auto;
   border-radius: 20px;
   overflow: hidden;
-  background-color: #fff0f6; /* rosa bem clarinho */
-  color: #c2185b; /* rosa escuro para textos */
+  background-color: #fff0f6;
+  color: #c2185b;
 }
 .container_produtos h2 {
   text-align: center;
@@ -168,19 +203,18 @@
   height: 250px;
   object-fit: cover;
   border-radius: 20px;
-  background-color: #fce4ec; /* rosa claro */
+  background-color: #fce4ec;
   cursor: pointer;
 }
 
-/* Botões de navegação do swiper fixos no rosa */
 .swiper-button-next,
 .swiper-button-prev {
   top: 50%;
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  color: #ff8cba !important; /* rosa escuro */
-  display: flex;
+  color: #ff8cba !important;
+  /display: flex;
   justify-content: center;
   align-items: center;
   user-select: none;
@@ -305,10 +339,6 @@
     width: 100%;
     height: auto;
     padding: 10px;
-  }
-
-  .img_card_product {
-    max-height: 140px;
   }
 }
 

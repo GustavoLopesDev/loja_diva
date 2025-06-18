@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; // <-- Importa useNavigate
+import { useNavigate } from "react-router-dom";
 
 const CardsCar = () => {
   const [cartItems, setCartItems] = useState([]);
-  const navigate = useNavigate(); // <-- Hook para navegação
+  const navigate = useNavigate();
 
   useEffect(() => {
     const items = JSON.parse(localStorage.getItem("carrinho")) || [];
@@ -52,7 +52,6 @@ const CardsCar = () => {
     .reduce((acc, item) => acc + item.price * item.quantidade, 0)
     .toFixed(2);
 
-  // Função para ir para página de finalizar compra
   const irParaFinalizarCompra = () => {
     navigate("/");
     localStorage.removeItem("carrinho");
@@ -134,7 +133,7 @@ const CardsCar = () => {
       right: "0",
       width: "100%",
       display: "flex",
-      justifyContent: "space-between", // para separar total e botão
+      justifyContent: "space-between",
       alignItems: "center",
       backgroundColor: "#fff",
       padding: "15px 30px",

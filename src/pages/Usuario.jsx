@@ -1,262 +1,224 @@
 import React, { useEffect, useState } from "react";
 import { useAuth } from "../components/AuthContext";
 import { useNavigate } from "react-router-dom";
-import { getUserData, saveUserData } from "../firebaseUserService";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import {
+  getUserData,
+  saveUserData,
+  uploadUserPhoto,
+} from "../firebaseUserService";
 
 const Usuario = () => {
   const { usuario, logout } = useAuth();
   const navigate = useNavigate();
 
-  const [loading, setLoading] = useState(true);
   const [nome, setNome] = useState("");
   const [endereco, setEndereco] = useState("");
   const [fotoURL, setFotoURL] = useState("");
   const [previewURL, setPreviewURL] = useState("");
-  const [error, setError] = useState("");
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
-  const storage = getStorage();
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!usuario) return;
-    async function fetchData() {
+    if (!usuario?.uid) return;
+
+    const fetchData = async () => {
       try {
         const data = await getUserData(usuario.uid);
-        console.log("Dados do usuário carregados:", data);
-        console.log("fotoURL recuperada:", data?.fotoURL);
-        setNome(data?.nome || usuario.displayName || "");
-        setEndereco(data?.endereco || "");
-        setFotoURL(data?.fotoURL || usuario.photoURL || "");
+        if (data) {
+          setNome(data.nome || "");
+          setEndereco(data.endereco || "");
+          setFotoURL(data.fotoURL || "");
+        }
       } catch (err) {
-        setError("Erro ao carregar dados do usuário.");
+        console.error("Erro ao buscar dados do usuário:", err);
       } finally {
         setLoading(false);
       }
-    }
+    };
+
     fetchData();
   }, [usuario]);
 
-  const handleSave = async () => {
-    setError("");
-    try {
-      await saveUserData(usuario.uid, { nome, endereco, fotoURL });
-      alert("Dados atualizados com sucesso!");
-    } catch (err) {
-      setError("Erro ao salvar dados.");
-    }
+  const handleImageSelect = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    setSelectedFile(file);
+    setPreviewURL(URL.createObjectURL(file));
   };
 
-  const handleImageUpload = async (event) => {
-    const file = event.target.files[0];
-    if (!file) return;
-
-    const localPreview = URL.createObjectURL(file);
-    setPreviewURL(localPreview);
-
-    setUploading(true);
-    const storageRef = ref(storage, `users/${usuario.uid}/${file.name}`);
-
+  const handleSave = async () => {
     try {
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
+      if (!usuario) return;
+      setUploading(true);
 
-      setFotoURL(url); // exibe a imagem oficial do Firebase no lugar do preview
-      // Não precisa mais limpar o preview manualmente
-      await saveUserData(usuario.uid, { nome, endereco, fotoURL: url });
-      alert("Foto atualizada com sucesso!");
-    } catch (error) {
-      console.error("Erro no upload:", error);
-      setError("Erro ao enviar a foto.");
+      let imageUrl = fotoURL;
+
+      // Se foi selecionado novo arquivo, faz o upload
+      if (selectedFile) {
+        imageUrl = await uploadUserPhoto(usuario.uid, selectedFile);
+
+        // Atualiza imagem na tela com timestamp para evitar cache
+        const urlWithTimestamp = imageUrl + "?t=" + new Date().getTime();
+        setFotoURL(urlWithTimestamp);
+        setPreviewURL("");
+      }
+
+      await saveUserData(usuario.uid, {
+        nome,
+        endereco,
+        fotoURL: imageUrl,
+      });
+
+      alert("Dados salvos com sucesso!");
+    } catch (err) {
+      console.error("Erro ao salvar dados:", err);
+      setError("Erro ao salvar os dados.");
     } finally {
       setUploading(false);
     }
   };
 
-  useEffect(() => {
-    return () => {
-      if (previewURL) {
-        URL.revokeObjectURL(previewURL);
-      }
-    };
-  }, [previewURL]);
-
   const handleLogout = async () => {
-    try {
-      await logout();
-      navigate("/login");
-    } catch (err) {
-      console.error(err);
-    }
+    await logout();
+    navigate("/login");
   };
 
-  if (!usuario) return <p>Carregando informações do usuário...</p>;
-  if (loading) return <p style={styles.loading}>Carregando perfil...</p>;
+  if (loading) return <p style={{ color: "#444" }}>Carregando...</p>;
 
   return (
-    <div style={styles.page}>
-      <div style={styles.card}>
-        <div style={styles.imageSection}>
-          {previewURL ? (
-            <img src={previewURL} alt="Preview" style={styles.img} />
-          ) : fotoURL ? (
-            <img src={fotoURL} alt="Perfil" style={styles.img} />
-          ) : (
-            <div style={styles.placeholder}>Sem Foto</div>
-          )}
+    <div style={containerStyle}>
+      <h2 style={titleStyle}>Perfil</h2>
 
-          <label style={styles.uploadLabel}>
-            {uploading ? "Enviando..." : "Alterar Foto"}
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                handleImageUpload(e);
-                e.target.value = null; // limpa o input
-              }}
-              disabled={uploading}
-              style={{ display: "none" }}
-            />
-          </label>
-        </div>
-
-        <div style={styles.info}>
-          <h2 style={styles.title}>Perfil do Usuário</h2>
-          {error && <p style={styles.error}>{error}</p>}
-
-          <label style={styles.label}>
-            Nome:
-            <input
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
-              style={styles.input}
-              placeholder="Seu nome"
-            />
-          </label>
-
-          <label style={styles.label}>
-            Endereço:
-            <input
-              type="text"
-              value={endereco}
-              onChange={(e) => setEndereco(e.target.value)}
-              style={styles.input}
-              placeholder="Seu endereço"
-            />
-          </label>
-
-          <button onClick={handleSave} style={styles.button}>
-            Salvar
-          </button>
-
-          <button
-            onClick={handleLogout}
-            style={{ ...styles.button, backgroundColor: "#e63946" }}
-          >
-            Sair
-          </button>
-        </div>
+      <div style={imageWrapperStyle}>
+        {previewURL || fotoURL ? (
+          <img
+            src={previewURL || fotoURL}
+            alt="Foto do perfil"
+            style={profileImageStyle}
+          />
+        ) : (
+          <div style={emptyProfileStyle} />
+        )}
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageSelect}
+          style={fileInputStyle}
+        />
       </div>
+
+      <input
+        type="text"
+        placeholder="Nome"
+        value={nome}
+        onChange={(e) => setNome(e.target.value)}
+        style={inputStyle}
+      />
+
+      <input
+        type="text"
+        placeholder="Endereço"
+        value={endereco}
+        onChange={(e) => setEndereco(e.target.value)}
+        style={inputStyle}
+      />
+
+      {error && <p style={errorStyle}>{error}</p>}
+
+      <button onClick={handleSave} disabled={uploading} style={buttonStyle}>
+        {uploading ? "Salvando..." : "Salvar"}
+      </button>
+
+      <button onClick={handleLogout} style={logoutButtonStyle}>
+        Sair
+      </button>
     </div>
   );
 };
 
-const styles = {
-  page: {
-    minHeight: "100vh",
-    background: "linear-gradient(to right, #6a11cb, #2575fc)",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "30px",
-    fontFamily: "'Segoe UI', sans-serif",
-  },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: "12px",
-    boxShadow: "0 6px 15px rgba(0,0,0,0.1)",
-    padding: "30px",
-    display: "flex",
-    flexWrap: "wrap",
-    gap: "30px",
-    maxWidth: "700px",
-    width: "100%",
-  },
-  imageSection: {
-    display: "flex",
-    flexDirection: "column",
-    alignItems: "center",
-    gap: "10px",
-    minWidth: "150px",
-  },
-  img: {
-    width: "120px",
-    height: "120px",
-    borderRadius: "50%",
-    objectFit: "cover",
-    border: "3px solid #2575fc",
-  },
-  placeholder: {
-    width: "120px",
-    height: "120px",
-    borderRadius: "50%",
-    backgroundColor: "#ddd",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    fontSize: "14px",
-    color: "#555",
-  },
-  uploadLabel: {
-    backgroundColor: "#2575fc",
-    color: "#fff",
-    padding: "8px 12px",
-    borderRadius: "6px",
-    fontSize: "14px",
-    cursor: "pointer",
-  },
-  info: {
-    flex: "1",
-    minWidth: "250px",
-  },
-  title: {
-    marginBottom: "20px",
-    color: "#222",
-  },
-  label: {
-    display: "block",
-    marginBottom: "12px",
-    fontWeight: "bold",
-    color: "#444",
-  },
-  input: {
-    width: "100%",
-    padding: "10px",
-    borderRadius: "6px",
-    border: "1px solid #ccc",
-    fontSize: "16px",
-    marginTop: "5px",
-  },
-  button: {
-    width: "100%",
-    padding: "12px",
-    marginTop: "15px",
-    backgroundColor: "#2563eb",
-    color: "#fff",
-    border: "none",
-    borderRadius: "6px",
-    cursor: "pointer",
-    fontWeight: "600",
-    fontSize: "16px",
-  },
-  error: {
-    color: "red",
-    marginBottom: "10px",
-  },
-  loading: {
-    color: "#fff",
-    fontSize: "18px",
-  },
+const containerStyle = {
+  maxWidth: 400,
+  margin: "30px auto",
+  padding: 20,
+  backgroundColor: "#f9f9f9",
+  borderRadius: 12,
+  boxShadow: "0 2px 10px rgba(0,0,0,0.1)",
+  fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
+};
+
+const titleStyle = {
+  textAlign: "center",
+  marginBottom: 25,
+  color: "#333",
+};
+
+const imageWrapperStyle = {
+  marginBottom: 25,
+  display: "flex",
+  flexDirection: "column",
+  alignItems: "center",
+};
+
+const profileImageStyle = {
+  width: 120,
+  height: 120,
+  borderRadius: "50%",
+  objectFit: "cover", // evita distorção da imagem, mantém proporção e cobre o círculo
+  boxShadow: "0 2px 8px rgba(0,0,0,0.2)",
+  marginBottom: 10,
+  border: "3px solid #007bff",
+};
+
+const emptyProfileStyle = {
+  width: 120,
+  height: 120,
+  borderRadius: "50%",
+  backgroundColor: "#ccc",
+  marginBottom: 10,
+  border: "3px solid #ddd",
+};
+
+const fileInputStyle = {
+  cursor: "pointer",
+};
+
+const inputStyle = {
+  width: "100%",
+  padding: "12px 14px",
+  marginBottom: 15,
+  borderRadius: 8,
+  border: "1px solid #ccc",
+  fontSize: 16,
+  outline: "none",
+  boxSizing: "border-box",
+};
+
+const buttonStyle = {
+  width: "100%",
+  padding: "12px 14px",
+  borderRadius: 8,
+  border: "none",
+  backgroundColor: "#007bff",
+  color: "#fff",
+  fontWeight: "600",
+  fontSize: 16,
+  cursor: "pointer",
+  transition: "background-color 0.3s ease",
+};
+
+const logoutButtonStyle = {
+  ...buttonStyle,
+  marginTop: 12,
+  backgroundColor: "#d9534f",
+};
+
+const errorStyle = {
+  color: "red",
+  marginBottom: 10,
+  fontWeight: "600",
+  textAlign: "center",
 };
 
 export default Usuario;

@@ -189,7 +189,7 @@ export default function Register() {
           <button
             type="submit"
             style={registerStyles.button}
-            disabled={!!success} // desativa botão após sucesso
+            disabled={!!success}
           >
             Cadastrar
           </button>

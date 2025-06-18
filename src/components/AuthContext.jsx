@@ -10,6 +10,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
+      console.log("Usuário autenticado:", user); // ajuda no debug
       setUsuario(user);
       setLoading(false);
     });
@@ -28,7 +29,11 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={{ usuario, loading, logout }}>
-      {children}
+      {!loading ? (
+        children
+      ) : (
+        <p style={{ color: "#fff" }}>Carregando autenticação...</p>
+      )}
     </AuthContext.Provider>
   );
 };

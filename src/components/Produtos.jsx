@@ -7,25 +7,33 @@ import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 
-const Produtos = () => {
+const Produtos = ({ produtos }) => {
   const [productsByCategory, setProductsByCategory] = useState({});
 
   useEffect(() => {
-    axios
-      .get("https://fakestoreapi.com/products")
-      .then((res) => {
-        const grouped = res.data.reduce((acc, product) => {
-          const category = product.category;
-          if (!acc[category]) {
-            acc[category] = [];
-          }
-          acc[category].push(product);
-          return acc;
-        }, {});
-        setProductsByCategory(grouped);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+    if (produtos && produtos.length > 0) {
+      const grouped = produtos.reduce((acc, product) => {
+        const category = product.category;
+        if (!acc[category]) acc[category] = [];
+        acc[category].push(product);
+        return acc;
+      }, {});
+      setProductsByCategory(grouped);
+    } else {
+      axios
+        .get("https://fakestoreapi.com/products")
+        .then((res) => {
+          const grouped = res.data.reduce((acc, product) => {
+            const category = product.category;
+            if (!acc[category]) acc[category] = [];
+            acc[category].push(product);
+            return acc;
+          }, {});
+          setProductsByCategory(grouped);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [produtos]);
 
   return (
     <div className="container_produtos">

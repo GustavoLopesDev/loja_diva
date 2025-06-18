@@ -8,6 +8,7 @@ import FinalizarCompra from "./pages/FinalizarCompra";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Usuario from "./pages/Usuario";
+import Resultados from "./pages/Resultados";
 
 import { AuthProvider } from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoute";
@@ -52,6 +53,14 @@ const AppWrapper = () => {
           element={
             <PrivateRoute>
               <Usuario />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/resultados"
+          element={
+            <PrivateRoute>
+              <Resultados />
             </PrivateRoute>
           }
         />
