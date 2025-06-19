@@ -402,9 +402,6 @@
   max-height: calc(1.5rem * 7 * 1.5);
   overflow: hidden;
   text-overflow: ellipsis;
-  display: -webkit-box;
-  -webkit-line-clamp: 7;
-  -webkit-box-orient: vertical;
 }
 
 .valor_product {
