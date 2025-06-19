@@ -73,7 +73,7 @@ const AppWrapper = () => {
 };
 
 const App = () => (
-  <BrowserRouter>
+  <BrowserRouter basename="/loja_diva/">
     <AuthProvider>
       <AppWrapper />
     </AuthProvider>
